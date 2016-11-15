@@ -6,13 +6,14 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import beans.Logs;
+import database.ResultDAO;
 import database.ResultJDBCTemplate;
 import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
 
 public class LogsController {
 
-	public static void createNewLog(ResultJDBCTemplate template, HttpServletRequest request){
+	public static void createNewLog(ResultDAO template, HttpServletRequest request){
 		
 		Logs logs = new Logs();
 		

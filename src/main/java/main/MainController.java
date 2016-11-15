@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.MediaType;
@@ -18,15 +20,14 @@ import beans.Logs;
 import beans.PlatformsSearch;
 import beans.Result;
 import beans.Searches;
+import database.ResultDAO;
 import database.ResultJDBCTemplate;
 
 @Controller
 public class MainController {
-	
-	ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-
-    ResultJDBCTemplate resultJDBCTemplate = (ResultJDBCTemplate)context.getBean("resultJDBCTemplate");
-
+    
+    @Autowired
+    private ResultDAO resultJDBCTemplate;
 
     @GetMapping("app")
     public String getMapping(Model model) {

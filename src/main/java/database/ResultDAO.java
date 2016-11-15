@@ -3,39 +3,26 @@ package database;
 import java.util.List;
 import javax.sql.DataSource;
 
+import beans.Logs;
 import beans.Result;
 
 public interface ResultDAO {
-	   /** 
-	    * This is the method to be used to initialize
-	    * database resources ie. connection.
-	    */
-	   public void setDataSource(DataSource ds);
-	   /** 
-	    * This is the method to be used to create
-	    * a record in the Result table.
-	    */
-	   public void create(Result result);
-	   /** 
-	    * This is the method to be used to list down
-	    * a record from the Result table corresponding
-	    * to a passed Result id.
-	    */
-	   public Result getResult(Integer id);
-	   /** 
-	    * This is the method to be used to list down
-	    * all the records from the Result table.
-	    */
-	   public List<Result> listResult();
-	   /** 
-	    * This is the method to be used to delete
-	    * a record from the Result table corresponding
-	    * to a passed Result id.
-	    */
-	   public void delete(Integer id);
-	   /** 
-	    * This is the method to be used to update
-	    * a record into the Result table.
-	    */
-	   public void update(int id, String name);
+
+	public void create(Result result);
+	public Result getResult(Integer id);
+	public List<Result> listResult();
+	public void delete(Integer id);
+	public void update(int id, String name);
+	void createLog(Logs logs);
+	List<Result> getReviews(int number);
+	List<Result> getResultsContainingName(String name);
+	List<Result> getDecksContainingTerm(String name);
+	List<Result> getDecksGamesByPlatform(int pc, int arcade, int ps, int xbox);
+	List<Result> getGamesByReleaseYear(String year);
+	List<Result> getGamesByAddYear(String year);
+	List<Result> getGamesFromPlatformPC();
+	List<Result> getGamesFromPlatformPS();
+	List<Result> getGamesFromPlatformXBOX();
+	List<Result> getGamesFromPlatformARCADE();
+	List<Logs> getLogs();
 }

@@ -14,18 +14,16 @@ import mappers.ResultsMapper;
 
 public class ResultJDBCTemplate implements ResultDAO {
 
-	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
 	public static String SQL;
 	
-	@Override
-	public void setDataSource(DataSource ds) {
-		this.dataSource = ds;
+	public ResultJDBCTemplate(DataSource dataSource) {
 	    this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
 
 	@Override
 	public void create(Result result) {
+		/*
 		try{
 			SQL = "insert into game (id, name, aliases, number_of_user_reviews, original_release_date, site_detail_url, date_added, date_last_updated, "
 					+ "api_detail_url, deck, expected_release_year, platform_arcade, platform_pc, platform_playstation, platform_xbox) "
@@ -39,10 +37,10 @@ public class ResultJDBCTemplate implements ResultDAO {
 	    } catch (DataAccessException e){
 	        throw new RuntimeException(e);
 	    }
-	    return;
-		
+	    */	
 	}
 	
+	@Override
 	public void createLog(Logs logs) {
 		try{
 			SQL = "insert into logs (ip_address, function_name, browser, browser_version, success, operating_system, date) "
@@ -89,67 +87,67 @@ public class ResultJDBCTemplate implements ResultDAO {
 	    return;
 		
 	}
-	
+	@Override
 	public List<Result> getReviews(int number){
 		SQL = "CALL reviewCount("+number+")";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getResultsContainingName(String name){
 		SQL = "CALL findGame('"+name+"')";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getDecksContainingTerm(String name){
 		SQL = "CALL findDeck('"+name+"')";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getDecksGamesByPlatform(int pc, int arcade, int ps, int xbox){
 		SQL = "call findByPlatforms("+pc+","+xbox+","+arcade+","+ps+");";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getGamesByReleaseYear(String year){
 		SQL = "call findReleaseYear("+year+");";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getGamesByAddYear(String year){
 		SQL = "call findAddYear("+year+");";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getGamesFromPlatformPC(){
 		SQL = "call onPC();";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getGamesFromPlatformXBOX(){
 		SQL = "call onXBOX();";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getGamesFromPlatformPS(){
 		SQL = "call onPS();";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Result> getGamesFromPlatformARCADE(){
 		SQL = "call onARCADE();";
 		List <Result> results = jdbcTemplateObject.query(SQL, new ResultsMapper());
 	    return results;
 	}
-	
+	@Override
 	public List<Logs> getLogs(){
 		SQL = "call getLogs();";
 		List <Logs> results = jdbcTemplateObject.query(SQL, new LogsMapper());
