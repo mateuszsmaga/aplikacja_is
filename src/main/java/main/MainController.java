@@ -219,7 +219,7 @@ public class MainController {
     public String findByUpdateYear( HttpServletResponse response, HttpServletRequest request) throws IOException {
     	if(ScheduledTask.youCanGrabData){
 			ScheduledTask.youCanGrabData=false;
-			response.setHeader("Content-Disposition", "attachment; filename=wyniki.xml");
+			response.setHeader("Content-Disposition", "attachment; filename=logi.xml");
 	    	List<Logs> results = resultJDBCTemplate.getLogs();
 	    	LogsController.createNewLog(resultJDBCTemplate, request);
 	    	return ResultPrinter.printLogs(results);	
