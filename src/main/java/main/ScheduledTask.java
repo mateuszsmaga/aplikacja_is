@@ -9,7 +9,7 @@ public class ScheduledTask {
     //private static final Logger log = LoggerFactory.getLogger(ScheduledTask.class);
     public static boolean youCanGrabData = false;
 
-    @Scheduled(fixedRate = 15000)
+    @Scheduled(fixedRate = 5000)
     public void reportCurrentTime() throws IOException {
         //log.info("The time is now {}", dateFormat.format(new Date()));
         youCanGrabData = true;

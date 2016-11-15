@@ -23,7 +23,7 @@
 				<fieldset>
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-10 control-label"><font color="red">Możesz pobierać dane raz na 15 sekund.</font></label>  
+				  <label class="col-md-10 control-label"><font color="red">Możesz pobierać dane co 5 sekund.</font></label>  
 				  <div class="col-md-2">
 				  	<button type="submit" class="btn btn-outline-success" style="float:right">Odśwież</button>
 				  </div>
